@@ -11,12 +11,13 @@ Art Explore
     {%else %} 
     Create Tweet
     {% endif %}
-    <form method="post" enctype='multipart/form_data'>
+    <form method="post" enctype='multipart/form-data' class="form">
         {% csrf_token %} 
-        {{form.as_p}}
+        {{ form.as_p }}
         <button class = "btn btn-warning" type = "submit">Submit</button>
-    </form> 
-    <a href="{% url 'tweet_list' %}">Back</a>
-</h2>
+   
+    <a class="btn btn-success" href="{% url 'tweet_list' %}">Back</a>
+</h2> 
+</form> 
 
 {% endblock %}
