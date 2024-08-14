@@ -3,7 +3,7 @@ from .models import Tweet
 from .forms import TweetForm ,UserRegistrationForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login
+from django.contrib.auth import login ,logout
 
 # Create your views here.
 def index(request):
@@ -50,15 +50,36 @@ def tweet_delete(request, tweet_id):
 
 
 def register(request):
-     if request.method == 'POST':
-         form = UserRegistrationForm(request.POST)
-         if form.is_valid():
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
              user = form.save(commit=False)
              user.set_password(form.cleaned_data['password1'])
              user.save()
-             login(request,user)
+             login(request, user)
              return redirect('tweet_list')
-         else:
-             form = UserRegistrationForm()
+    else:
+        form = UserRegistrationForm()
 
-     return render(request,'registration/register.html',{'form' : form})
+    return render(request,'registration/register.html',{'form' : form})
+
+# def search(request):
+#     if request.method == 'POST':
+#         query = request.POST['query']
+#         allposts = Tweet.objects.filter(text__icontains = query)
+#         output = {'query': query , "allposts" : allposts}
+#         return render(request,'search.html',output)
+#     else :
+#         return render(request,'search.html')
+
+def search(request):
+    query = request.GET.get('query', '')
+    if query:
+        allposts = Tweet.objects.filter(text__icontains=query)
+    else:
+        allposts = []  # Handle empty query
+    output = {'query': query, 'allposts': allposts}
+    return render(request, 'search.html', output)
+
+
+
