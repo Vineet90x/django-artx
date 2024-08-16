@@ -5,29 +5,63 @@ Art Explore
 {% endblock %}
 
 {% block content %}
-<h1 class = "text-center m-4 ">Welcome to Artx</h1>
+<div class="hero bg-dark text-white text-center py-5">
+    <h1>Welcome to Artx</h1>
+    <div class="typing-container">
+      <p class="lead">Discover and share amazing art with the world.</p>
+    </div>
+    <a href="{% url 'tweet_create' %}" class="btn btn-primary btn-lg">Create a Post</a>
+</div>
 
-<a class = 'btn btn-primary mb-4 ms-2 mt-2 p' href="{% url 'tweet_create' %}">
-Create a Tweet</a>
-
-<div class = 'container row gap-3 ms:$spacer * 5 '>
+<!-- Featured Posts -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">Featured Posts</h2>
+<div class="container row gap-3 ms-5">
     {% for tweet in tweets %}
-    <div class="card" style="width: 20rem;">
-      {% if tweet.photo %}
-      <img src="{{ tweet.photo.url }}" alt="Tweet Photo" style="width: 300px; height: 250px; margin-top:5px">
-      {% else %}
-      <p>No photo uploaded for this tweet.</p>
-       {% endif %}
+    <div class="card hover-zoom" style="width: 20rem;">
+        {% if tweet.photo %}
+        <img src="{{ tweet.photo.url }}" alt="Tweet Photo">
+        {% else %}
+        <p>No photo uploaded for this tweet.</p>
+        {% endif %}
         <div class="card-body">
-          <h5 class="card-title">{{tweet.user.username}}</h5>
-          <p class="card-text">{{tweet.text}}</p>
-          {% if tweet.user == user %}
-          <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
-          <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
-          {% endif %}
+            <h5 class="card-title">{{ tweet.user.username }}</h5>
+            <p class="card-text">{{ tweet.text }}</p>
+            {% if tweet.user == user %}
+            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+            {% endif %}
         </div>
-      </div>
+    </div>
     {% endfor %}
 </div>
-{% endblock %}
+            <!-- About Us Section -->
+<div class="bg-dark-blue py-5 ">
+    <h2 class="text-center mb-4 text-white">About Artx</h2>
+    <p class="lead text-center mx-auto " style="max-width: 800px;">
+        Artx is a platform dedicated to artists and art lovers. Whether you're a painter, sculptor, or digital artist, Artx offers a space to share your work, connect with others, and grow as an artist. Join our community and be part of a creative journey.
+    </p>
+</div>
 
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <p>Artx offers a space to share your work, connect with others, and grow as an artist.</p>
+        </div>
+        <div class="col-md-6 text-end">
+          <p>Join our community and be part of a creative journey.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-icons">
+          <a href="https://www.facebook.com/V.s.artworks/"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.youtube.com/@vsartworks9425?app=desktop"><i class="fab fa-youtube"></i></a>
+          <a href="https://www.instagram.com/_v.s.artworks_/"><i class="fab fa-instagram"></i></a> 
+        </div>
+        <p>&copy; 2024 Artx All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+{% endblock %}

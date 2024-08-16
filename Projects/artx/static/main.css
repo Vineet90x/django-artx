@@ -1,0 +1,135 @@
+
+.container .card.hover-zoom {
+  transition: transform 0.5s ease;
+}
+
+.container .card.hover-zoom:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%; /* Make image width responsive to card width */
+  height: auto; /* Maintain aspect ratio */
+  max-height: 250px; /* Optional: limit maximum height */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+
+.btn-primary {
+  margin-left: 10px;
+  background-color: #014996; /* Adjust color as needed */
+  border-color: #014996; /* Adjust color as needed */
+}
+
+.btn-primary:hover {
+  background-color: #023163; /* Adjust hover color as needed */
+  border-color: #023163; /* Adjust hover border color as needed */
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h2 {
+  color: #007bff;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #014996;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #023163;
+}
+
+.footer {
+  background-color: #1a1a1a; 
+  color: #fff;
+  padding: 20px 10px;
+  text-align: center;
+  margin-bottom: -45px;
+  margin-right: -73px;
+  margin-left: -73px;
+  margin-top: 15px;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-icons a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-icons {
+  margin-bottom: 10px;
+}
+
+
+@media (max-width: 576px) {
+  .footer {
+    padding: 15px 5px;
+    margin: 5px -5px 0 -5px;
+    margin-left: -10px;
+    margin-bottom: -45px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    padding-top: 15px;
+  }
+
+  .social-icons {
+    margin-bottom: 15px;
+  }
+
+  .footer p {
+    margin-bottom: 10px;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+body {
+  cursor: none; /* Hide the default cursor */
+}
+
+.cursor-dot {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 2px solid hsla(0, 0%, 100%, 0.5);
+
+}
+
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+  backdrop-filter: invert(1) grayscale(1);
+  -webkit-backdrop-filter: invert(1) grayscale(1);
+  z-index: 99999;
+}
+
