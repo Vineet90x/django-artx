@@ -63,14 +63,6 @@ def register(request):
 
     return render(request,'registration/register.html',{'form' : form})
 
-# def search(request):
-#     if request.method == 'POST':
-#         query = request.POST['query']
-#         allposts = Tweet.objects.filter(text__icontains = query)
-#         output = {'query': query , "allposts" : allposts}
-#         return render(request,'search.html',output)
-#     else :
-#         return render(request,'search.html')
 
 def search(request):
     query = request.GET.get('query', '')
